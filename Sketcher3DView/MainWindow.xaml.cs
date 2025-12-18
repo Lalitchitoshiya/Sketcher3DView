@@ -204,6 +204,25 @@ namespace Sketcher3DView
 
         // ================= TRANSFORM MENU =================
 
+        // Rotation handlers for X axes
+        private void RotateX_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Rotation.X += 10;
+            DrawShape(currentShape);
+        }
+
+        private void RotateNegX_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Rotation.X -= 10;
+            DrawShape(currentShape);
+        }
+        
+        
+        // Rotation handlers for Y axes
         private void RotateY_Click(object sender, RoutedEventArgs e)
         {
             if (currentShape == null) return;
@@ -220,6 +239,24 @@ namespace Sketcher3DView
             DrawShape(currentShape);
         }
 
+        // Rotation handlers for z axes
+        private void RotateZ_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Rotation.Z += 10;
+            DrawShape(currentShape);
+        }
+
+        private void RotateNegZ_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Rotation.Z -= 10;
+            DrawShape(currentShape);
+        }
+
+        // Scale handlers
         private void ScaleUp_Click(object sender, RoutedEventArgs e)
         {
             if (currentShape == null) return;
@@ -241,7 +278,7 @@ namespace Sketcher3DView
 
             DrawShape(currentShape);
         }
-
+        // Translation handlers for X axes
         private void MoveX_Click(object sender, RoutedEventArgs e)
         {
             if (currentShape == null) return;
@@ -256,6 +293,41 @@ namespace Sketcher3DView
 
             currentShape.Transform.Position.X -= 0.2;
             DrawShape(currentShape);
+            
         }
+        // Translation handlers for Y axes
+        private void MoveY_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Position.Y += 0.2;
+            DrawShape(currentShape);
+        }
+
+        private void MoveNegY_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Position.Y -= 0.2;
+            DrawShape(currentShape);
+        }
+
+        // Translation handlers for z axes
+        private void MoveZ_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Position.Z += 0.2;
+            DrawShape(currentShape);
+        }
+
+        private void MoveNegZ_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Position.Z -= 0.2;
+            DrawShape(currentShape);
+        }
+
     }
 }

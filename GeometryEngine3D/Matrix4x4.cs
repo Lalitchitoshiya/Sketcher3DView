@@ -42,6 +42,31 @@ namespace GeometryEngine3D
             m.M[2, 2] = Math.Cos(rad);
             return m;
         }
+        public static Matrix4x4 RotationX(double angleDeg)
+        {
+            double rad = angleDeg * Math.PI / 180;
+            var m = Identity();
+
+            m.M[1, 1] = Math.Cos(rad);
+            m.M[1, 2] = -Math.Sin(rad);
+            m.M[2, 1] = Math.Sin(rad);
+            m.M[2, 2] = Math.Cos(rad);
+
+            return m;
+        }
+
+        public static Matrix4x4 RotationZ(double angleDeg)
+        {
+            double rad = angleDeg * Math.PI / 180;
+            var m = Identity();
+
+            m.M[0, 0] = Math.Cos(rad);
+            m.M[0, 1] = -Math.Sin(rad);
+            m.M[1, 0] = Math.Sin(rad);
+            m.M[1, 1] = Math.Cos(rad);
+
+            return m;
+        }
 
         public static Matrix4x4 operator *(Matrix4x4 a, Matrix4x4 b)
         {
