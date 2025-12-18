@@ -9,16 +9,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+        <!-- LEFT BUTTON PANEL -->
         <StackPanel Grid.Column="0" Margin="10">
             <Button Content="Cube" Click="Cube_Click" Margin="5"/>
             <Button Content="Cuboid" Click="Cuboid_Click" Margin="5"/>
-            <Button Content="Sphere" Click="Sphere_Click" Margin="5"/>
+            <Button Content="Pyramid" Click="Pyramid_Click" Margin="5"/>
             <Button Content="Cylinder" Click="Cylinder_Click" Margin="5"/>
             <Button Content="Cone" Click="Cone_Click" Margin="5"/>
-            <Button Content="Pyramid" Click="Pyramid_Click" Margin="5"/>
         </StackPanel>
 
-        <!-- IMPORTANT NAME -->
+        <!-- 3D VIEW -->
         <Viewport3D Grid.Column="1" Name="viewport"/>
     </Grid>
 </Window>
