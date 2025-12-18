@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sketcher3DView", "Sketcher3DView\Sketcher3DView.csproj", "{C5633316-479B-46BA-BC09-9C530396AF76}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3} = {0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometryEngine3D", "GeometryEngine3D\GeometryEngine3D.csproj", "{0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5633316-479B-46BA-BC09-9C530396AF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5633316-479B-46BA-BC09-9C530396AF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5633316-479B-46BA-BC09-9C530396AF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5633316-479B-46BA-BC09-9C530396AF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CD24336-A98E-4D0B-A5B8-20CEE8C94EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45F396E0-787E-4A44-B632-26B6B363CE6F}
+	EndGlobalSection
+EndGlobal
