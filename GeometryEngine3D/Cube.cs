@@ -1,34 +1,24 @@
-using GeometryEngine3D;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace GeometryEngine3D
 {
     public class Cube : Shape
     {
-        private double size;
+        double s;
 
         public Cube(double size)
         {
-            Name = "Cube";
-            this.size = size;
+            s = size / 2;
         }
 
-        public override List<Point_3D> GetVertices()
-        { 
-            double s = size / 2;
-
+        protected override List<Point_3D> GetLocalVertices()
+        {
             return new List<Point_3D>
             {
-                new Point_3D(-s, -s, -s),
-                new Point_3D( s, -s, -s),
-                new Point_3D( s,  s, -s),
-                new Point_3D(-s,  s, -s),
-
-                new Point_3D(-s, -s,  s),
-                new Point_3D( s, -s,  s),
-                new Point_3D( s,  s,  s),
-                new Point_3D(-s,  s,  s),
+                new Point_3D(-s,-s,-s), new Point_3D(s,-s,-s),
+                new Point_3D(s, s,-s), new Point_3D(-s, s,-s),
+                new Point_3D(-s,-s, s), new Point_3D(s,-s, s),
+                new Point_3D(s, s, s), new Point_3D(-s, s, s)
             };
         }
     }

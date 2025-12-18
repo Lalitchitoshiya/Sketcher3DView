@@ -7,25 +7,24 @@ namespace Sketcher3DView
 {
     public partial class MainWindow : Window
     {
+        // Currently selected shape
+        private Shape currentShape;
+
         public MainWindow()
         {
             InitializeComponent();
             SetupScene();
         }
-        private void Sphere_Click(object sender, RoutedEventArgs e)
-        {
-            DrawShape(new Sphere(1.5));
-        }
 
-        // ================= SCENE =================
+        // ================= SCENE SETUP =================
         private void SetupScene()
         {
             viewport.Children.Clear();
 
             viewport.Camera = new PerspectiveCamera
             {
-                Position = new Point3D(5, 5, 5),
-                LookDirection = new Vector3D(-5, -5, -5),
+                Position = new Point3D(6, 6, 6),
+                LookDirection = new Vector3D(-6, -6, -6),
                 UpDirection = new Vector3D(0, 1, 0),
                 FieldOfView = 60
             };
@@ -33,11 +32,14 @@ namespace Sketcher3DView
             Model3DGroup lights = new Model3DGroup();
             lights.Children.Add(new AmbientLight(Colors.White));
 
-            viewport.Children.Add(new ModelVisual3D { Content = lights });
+            viewport.Children.Add(new ModelVisual3D
+            {
+                Content = lights
+            });
         }
 
         // ================= DRAW SHAPE =================
-        private void DrawShape(GeometryEngine3D.Shape shape)
+        private void DrawShape(Shape shape)
         {
             SetupScene();
 
@@ -62,34 +64,37 @@ namespace Sketcher3DView
             GeometryModel3D model = new GeometryModel3D
             {
                 Geometry = mesh,
-                Material = new DiffuseMaterial(new SolidColorBrush(Colors.LightBlue)),
-                BackMaterial = new DiffuseMaterial(new SolidColorBrush(Colors.LightBlue))
+                Material = new DiffuseMaterial(Brushes.LightBlue),
+                BackMaterial = new DiffuseMaterial(Brushes.LightBlue)
             };
 
-            viewport.Children.Add(new ModelVisual3D { Content = model });
+            viewport.Children.Add(new ModelVisual3D
+            {
+                Content = model
+            });
         }
 
         // ================= TRIANGLES =================
 
         private void AddCubeTriangles(MeshGeometry3D mesh)
         {
-            int[] indices =
+            int[] idx =
             {
-                0,1,2, 0,2,3,       // Front
-                4,6,5, 4,7,6,       // Back
-                0,3,7, 0,7,4,       // Left
-                1,5,6, 1,6,2,       // Right
-                3,2,6, 3,6,7,       // Top
-                0,4,5, 0,5,1        // Bottom
+                0,1,2, 0,2,3,
+                4,6,5, 4,7,6,
+                0,3,7, 0,7,4,
+                1,5,6, 1,6,2,
+                3,2,6, 3,6,7,
+                0,4,5, 0,5,1
             };
 
-            foreach (int i in indices)
+            foreach (int i in idx)
                 mesh.TriangleIndices.Add(i);
         }
 
         private void AddPyramidTriangles(MeshGeometry3D mesh)
         {
-            int[] indices =
+            int[] idx =
             {
                 0,1,2,
                 0,2,3,
@@ -99,7 +104,7 @@ namespace Sketcher3DView
                 1,3,2
             };
 
-            foreach (int i in indices)
+            foreach (int i in idx)
                 mesh.TriangleIndices.Add(i);
         }
 
@@ -128,18 +133,17 @@ namespace Sketcher3DView
         {
             int apex = 0;
 
-            for (int i = 1; i < mesh.Positions.Count - 2; i += 2)
+            for (int i = 1; i < mesh.Positions.Count - 2; i++)
             {
                 mesh.TriangleIndices.Add(apex);
                 mesh.TriangleIndices.Add(i);
-                mesh.TriangleIndices.Add(i + 2);
+                mesh.TriangleIndices.Add(i + 1);
             }
         }
 
-
         private void AddSphereTriangles(MeshGeometry3D mesh)
         {
-            int slices = 16; // MUST match Sphere.cs
+            int slices = 16;
             int stacks = 16;
 
             for (int stack = 0; stack < stacks; stack++)
@@ -160,34 +164,98 @@ namespace Sketcher3DView
             }
         }
 
-        // ================= BUTTON EVENTS =================
+        // ================= SHAPE MENU =================
 
         private void Cube_Click(object sender, RoutedEventArgs e)
         {
-            DrawShape(new Cube(2));
+            currentShape = new Cube(2);
+            DrawShape(currentShape);
         }
 
         private void Cuboid_Click(object sender, RoutedEventArgs e)
         {
-            DrawShape(new Cuboid(3, 2, 1));
+            currentShape = new Cuboid(3, 2, 1);
+            DrawShape(currentShape);
+        }
+
+        private void Sphere_Click(object sender, RoutedEventArgs e)
+        {
+            currentShape = new Sphere(1.5);
+            DrawShape(currentShape);
         }
 
         private void Pyramid_Click(object sender, RoutedEventArgs e)
         {
-            DrawShape(new Pyramid(2, 3));
+            currentShape = new Pyramid(2, 3);
+            DrawShape(currentShape);
         }
 
         private void Cylinder_Click(object sender, RoutedEventArgs e)
         {
-            DrawShape(new Cylinder(1, 3));
+            currentShape = new Cylinder(1, 3);
+            DrawShape(currentShape);
         }
 
         private void Cone_Click(object sender, RoutedEventArgs e)
         {
-            DrawShape(new Cone(1.5, 3));
+            currentShape = new Cone(1.5, 3);
+            DrawShape(currentShape);
+        }
+
+        // ================= TRANSFORM MENU =================
+
+        private void RotateY_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Rotation.Y += 10;
+            DrawShape(currentShape);
+        }
+
+        private void RotateNegY_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Rotation.Y -= 10;
+            DrawShape(currentShape);
+        }
+
+        private void ScaleUp_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Scale.X += 0.1;
+            currentShape.Transform.Scale.Y += 0.1;
+            currentShape.Transform.Scale.Z += 0.1;
+
+            DrawShape(currentShape);
+        }
+
+        private void ScaleDown_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Scale.X -= 0.1;
+            currentShape.Transform.Scale.Y -= 0.1;
+            currentShape.Transform.Scale.Z -= 0.1;
+
+            DrawShape(currentShape);
+        }
+
+        private void MoveX_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Position.X += 0.2;
+            DrawShape(currentShape);
+        }
+
+        private void MoveNegX_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentShape == null) return;
+
+            currentShape.Transform.Position.X -= 0.2;
+            DrawShape(currentShape);
         }
     }
 }
-
-
-

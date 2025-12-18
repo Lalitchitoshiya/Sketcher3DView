@@ -7,32 +7,34 @@ namespace GeometryEngine3D
     {
         double radius;
         int slices = 16;
+        int stacks = 16;
 
         public Sphere(double radius)
         {
-            Name = "Sphere";
             this.radius = radius;
         }
 
-        public override List<Point_3D> GetVertices()
+        protected override List<Point_3D> GetLocalVertices()
         {
-            List<Point_3D> points = new List<Point_3D>();
+            List<Point_3D> pts = new List<Point_3D>();
 
-            for (int i = 0; i <= slices; i++)
+            for (int stack = 0; stack <= stacks; stack++)
             {
-                double lat = Math.PI * i / slices;
-                for (int j = 0; j <= slices; j++)
+                double phi = Math.PI * stack / stacks;
+
+                for (int slice = 0; slice <= slices; slice++)
                 {
-                    double lon = 2 * Math.PI * j / slices;
+                    double theta = 2 * Math.PI * slice / slices;
 
-                    double x = radius * Math.Sin(lat) * Math.Cos(lon);
-                    double y = radius * Math.Cos(lat);
-                    double z = radius * Math.Sin(lat) * Math.Sin(lon);
+                    double x = radius * Math.Sin(phi) * Math.Cos(theta);
+                    double y = radius * Math.Cos(phi);
+                    double z = radius * Math.Sin(phi) * Math.Sin(theta);
 
-                    points.Add(new Point_3D(x, y, z));
+                    pts.Add(new Point_3D(x, y, z));
                 }
             }
-            return points;
+
+            return pts;
         }
     }
 }

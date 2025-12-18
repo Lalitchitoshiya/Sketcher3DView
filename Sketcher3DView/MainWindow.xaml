@@ -3,24 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Sketcher3D" Height="500" Width="800">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <DockPanel>
 
-        <!-- LEFT BUTTON PANEL -->
-        <StackPanel Grid.Column="0" Margin="10">
-            <Button Content="Cube" Click="Cube_Click" Margin="5"/>
-            <Button Content="Cuboid" Click="Cuboid_Click" Margin="5"/>
-            <Button Content="Pyramid" Click="Pyramid_Click" Margin="5"/>
-            <Button Content="Cylinder" Click="Cylinder_Click" Margin="5"/>
-            <Button Content="Cone" Click="Cone_Click" Margin="5"/>
-            <Button Content="Sphere" Click="Sphere_Click" Margin="5"/>
+        <!-- ================= MENU BAR ================= -->
+        <Menu DockPanel.Dock="Top">
 
-        </StackPanel>
+            <!-- SHAPES MENU -->
+            <MenuItem Header="Shapes">
+                <MenuItem Header="Cube" Click="Cube_Click"/>
+                <MenuItem Header="Cuboid" Click="Cuboid_Click"/>
+                <MenuItem Header="Sphere" Click="Sphere_Click"/>
+                <MenuItem Header="Pyramid" Click="Pyramid_Click"/>
+                <MenuItem Header="Cylinder" Click="Cylinder_Click"/>
+                <MenuItem Header="Cone" Click="Cone_Click"/>
+            </MenuItem>
 
-        <!-- 3D VIEW -->
-        <Viewport3D Grid.Column="1" Name="viewport"/>
-    </Grid>
+            <!-- TRANSFORM MENU -->
+            <MenuItem Header="Transform">
+                <MenuItem Header="Rotate +Y" Click="RotateY_Click"/>
+                <MenuItem Header="Rotate -Y" Click="RotateNegY_Click"/>
+                <Separator/>
+                <MenuItem Header="Scale Up" Click="ScaleUp_Click"/>
+                <MenuItem Header="Scale Down" Click="ScaleDown_Click"/>
+                <Separator/>
+                <MenuItem Header="Move +X" Click="MoveX_Click"/>
+                <MenuItem Header="Move -X" Click="MoveNegX_Click"/>
+            </MenuItem>
+
+        </Menu>
+
+        <!-- ================= 3D VIEW ================= -->
+        <Viewport3D Name="viewport"/>
+
+    </DockPanel>
 </Window>
