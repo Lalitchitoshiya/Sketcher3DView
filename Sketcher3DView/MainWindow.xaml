@@ -22,12 +22,32 @@
             <MenuItem Header="Transform">
                 <MenuItem Header="Rotate +Y" Click="RotateY_Click"/>
                 <MenuItem Header="Rotate -Y" Click="RotateNegY_Click"/>
+
+                <Separator/>
+                <MenuItem Header="Rotate +X" Click="RotateX_Click"/>
+                <MenuItem Header="Rotate -X" Click="RotateNegX_Click"/>
+                <MenuItem Header="Rotate +Z" Click="RotateZ_Click"/>
+                <MenuItem Header="Rotate -Z" Click="RotateNegZ_Click"/>
+
                 <Separator/>
                 <MenuItem Header="Scale Up" Click="ScaleUp_Click"/>
                 <MenuItem Header="Scale Down" Click="ScaleDown_Click"/>
                 <Separator/>
                 <MenuItem Header="Move +X" Click="MoveX_Click"/>
                 <MenuItem Header="Move -X" Click="MoveNegX_Click"/>
+
+                <Separator/>
+
+                <MenuItem Header="Move +Y" Click="MoveY_Click"/>
+                <MenuItem Header="Move -Y" Click="MoveNegY_Click"/>
+
+                <Separator/>
+
+                <MenuItem Header="Move +Z" Click="MoveZ_Click"/>
+                <MenuItem Header="Move -Z" Click="MoveNegZ_Click"/>
+
+
+
             </MenuItem>
 
         </Menu>
