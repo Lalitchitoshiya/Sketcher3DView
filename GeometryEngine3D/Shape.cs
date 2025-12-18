@@ -4,8 +4,21 @@ namespace GeometryEngine3D
 {
     public abstract class Shape
     {
-        public string Name { get; protected set; }
+        public Transform3D Transform = new Transform3D();
 
-        public abstract List<Point_3D> GetVertices();
+        protected abstract List<Point_3D> GetLocalVertices();
+
+        public List<Point_3D> GetVertices()
+        {
+            var result = new List<Point_3D>();
+            var world = Transform.GetWorldMatrix();
+
+            foreach (var p in GetLocalVertices())
+            {
+                var v = world.MultiplyPoint(p.ToVector());
+                result.Add(Point_3D.FromVector(v));
+            }
+            return result;
+        }
     }
 }

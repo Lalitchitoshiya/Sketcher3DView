@@ -10,12 +10,11 @@ namespace GeometryEngine3D
 
         public Cylinder(double radius, double height)
         {
-            Name = "Cylinder";
             this.radius = radius;
             this.height = height;
         }
 
-        public override List<Point_3D> GetVertices()
+        protected override List<Point_3D> GetLocalVertices()
         {
             List<Point_3D> pts = new List<Point_3D>();
             double h = height / 2;
@@ -26,9 +25,10 @@ namespace GeometryEngine3D
                 double x = radius * Math.Cos(angle);
                 double z = radius * Math.Sin(angle);
 
-                pts.Add(new Point_3D(x, -h, z));
-                pts.Add(new Point_3D(x, h, z));
+                pts.Add(new Point_3D(x, -h, z)); // bottom
+                pts.Add(new Point_3D(x, h, z)); // top
             }
+
             return pts;
         }
     }

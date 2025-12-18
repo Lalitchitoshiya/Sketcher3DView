@@ -6,23 +6,21 @@ namespace GeometryEngine3D
     {
         double size, height;
 
-        public Pyramid(double size, double height)
+        public Pyramid(double baseSize, double height)
         {
-            Name = "Pyramid";
-            this.size = size / 2;
+            size = baseSize / 2;
             this.height = height;
         }
 
-        public override List<Point_3D> GetVertices()
+        protected override List<Point_3D> GetLocalVertices()
         {
-            Point_3D top = new Point_3D(0, height, 0);
-
             return new List<Point_3D>
             {
-                top, new Point_3D(-size, 0, -size),
-                top, new Point_3D( size, 0, -size),
-                top, new Point_3D( size, 0,  size),
-                top, new Point_3D(-size, 0,  size),
+                new Point_3D(0, height, 0),          // Apex
+                new Point_3D(-size, 0, -size),
+                new Point_3D( size, 0, -size),
+                new Point_3D( size, 0,  size),
+                new Point_3D(-size, 0,  size)
             };
         }
     }
