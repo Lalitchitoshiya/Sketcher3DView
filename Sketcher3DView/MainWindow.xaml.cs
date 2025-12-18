@@ -12,6 +12,10 @@ namespace Sketcher3DView
             InitializeComponent();
             SetupScene();
         }
+        private void Sphere_Click(object sender, RoutedEventArgs e)
+        {
+            DrawShape(new Sphere(1.5));
+        }
 
         // ================= SCENE =================
         private void SetupScene()
@@ -52,6 +56,8 @@ namespace Sketcher3DView
                 AddCylinderTriangles(mesh);
             else if (shape is Cone)
                 AddConeTriangles(mesh);
+            else if (shape is Sphere)
+                AddSphereTriangles(mesh);
 
             GeometryModel3D model = new GeometryModel3D
             {
@@ -130,6 +136,30 @@ namespace Sketcher3DView
             }
         }
 
+
+        private void AddSphereTriangles(MeshGeometry3D mesh)
+        {
+            int slices = 16; // MUST match Sphere.cs
+            int stacks = 16;
+
+            for (int stack = 0; stack < stacks; stack++)
+            {
+                for (int slice = 0; slice < slices; slice++)
+                {
+                    int first = (stack * (slices + 1)) + slice;
+                    int second = first + slices + 1;
+
+                    mesh.TriangleIndices.Add(first);
+                    mesh.TriangleIndices.Add(second);
+                    mesh.TriangleIndices.Add(first + 1);
+
+                    mesh.TriangleIndices.Add(second);
+                    mesh.TriangleIndices.Add(second + 1);
+                    mesh.TriangleIndices.Add(first + 1);
+                }
+            }
+        }
+
         // ================= BUTTON EVENTS =================
 
         private void Cube_Click(object sender, RoutedEventArgs e)
@@ -158,3 +188,6 @@ namespace Sketcher3DView
         }
     }
 }
+
+
+

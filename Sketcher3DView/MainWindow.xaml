@@ -16,6 +16,8 @@
             <Button Content="Pyramid" Click="Pyramid_Click" Margin="5"/>
             <Button Content="Cylinder" Click="Cylinder_Click" Margin="5"/>
             <Button Content="Cone" Click="Cone_Click" Margin="5"/>
+            <Button Content="Sphere" Click="Sphere_Click" Margin="5"/>
+
         </StackPanel>
 
         <!-- 3D VIEW -->
